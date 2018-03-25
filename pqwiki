@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+COMPOSE_FILE="dev"
+
+COMPOSE="docker-compose -f docker-compose.yml -f docker-compose.$COMPOSE_FILE.yml"
+
+if [ $# -gt 0 ]; then
+    $COMPOSE "$@"
+else
+    $COMPOSE ps
+fi
