@@ -2,10 +2,19 @@
 
 COMPOSE_FILE="dev"
 
+#Changer l'env lorsqu'on est sur prod (host: ubuntu)
+if [ "$( uname -s )" == "Linux" ]; then
+    COMPOSE_FILE="prod"
+fi
+
 COMPOSE="docker-compose -f docker-compose.yml -f docker-compose.$COMPOSE_FILE.yml"
 
 if [ $# -gt 0 ]; then
-    $COMPOSE "$@"
+    if [ $1 == "start" ]; then
+        $COMPOSE up -d
+    else
+        $COMPOSE "$@"
+    fi
 else
     $COMPOSE ps
 fi
