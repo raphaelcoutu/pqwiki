@@ -2,6 +2,7 @@ version: '3'
 services:
   app:
     volumes:
+    - app_images:/var/www/html/images
     - ./LocalSettings.php:/var/www/html/LocalSettings.php
   
   # Possibilité non-exclue de retirer mysql-docker en production
@@ -14,4 +15,5 @@ services:
     env_file:
     - .env
 volumes:
+  app_images:
   mysql_data:
